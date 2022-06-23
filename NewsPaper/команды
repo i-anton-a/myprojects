@@ -1,0 +1,23 @@
+python NewsPaper/manage.py shell
+
+from news.models import *
+
+u1 = User.object.create_user(username='Anton')
+u2 = User.objects.create_user(username='AntonI')
+Author.objects.create(authorUser=u1)
+Category.objects.create(name='IT')
+Post.objects.create(author=author, categoryType='NW', title='sometitle', text='SOMEBIGTeXT')
+Post.objects.get(id=1).postCategory.add(Category.objects.get(id=1))
+Comment.objects.create(commentPost=Post.objects.get(id=1), commentUser=Author.objects.get(id=1).authorUser, text='sdewfrefrfref')
+Comment.objects.get(id=1).like()
+
+0
+>>> Comment.objects.get(id=1).like()
+>>> Comment.objects.get(id=1).like()
+>>> Comment.objects.get(id=1).rating
+0
+>>> Author.objects.get(id=1)
+<Author: Author object (1)>
+>>> a=Author.objects.get(id=1)
+>>> a.update_rating()
+>>> a.ratingAuthor
